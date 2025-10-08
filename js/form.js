@@ -56,7 +56,18 @@ form.addEventListener("submit", function (event) {
     document.getElementById("help-nacimiento").textContent =
       "Ingrese una fecha válida.";
     valido = false;
+  } else {
+    const fechaNacimiento = new Date(nacimiento);
+    const fechaMin = new Date("1900-09-24");
+    const fechaMax = new Date("2007-09-24");
+
+    if (fechaNacimiento < fechaMin || fechaNacimiento > fechaMax) {
+      document.getElementById("help-nacimiento").textContent =
+        "La fecha debe estar entre el 24/09/1900 y el 24/09/2007.";
+      valido = false;
+    }
   }
+
 
   // Si hay errores, frenar
   if (!valido) return;
